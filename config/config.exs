@@ -3,7 +3,7 @@
 use Mix.Config
 
 config :xarango, db: [
-  server: "http://localhost:8529",
+  server: "http://#{System.get_env("ARANGO_HOST")}:8529",
   database: "_system",
   version: 30000,
   username: System.get_env("ARANGO_USER"),

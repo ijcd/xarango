@@ -6,11 +6,11 @@ defmodule Xarango.Query do
   import Xarango.Client
   use Xarango.URI, prefix: "cursor"
   
-  def query(query) when is_binary(query) do
-    query(%Query{query: query})
+  def query(query, database\\nil)
+  def query(query, database) when is_binary(query) do
+    query(%Query{query: query}, database)
   end
-
-  def query(query, database\\nil) do
+  def query(query, database) do
     url("", database)
     |> post(query)
     |> to_result
